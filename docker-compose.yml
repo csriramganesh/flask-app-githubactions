@@ -1,0 +1,7 @@
+services:
+  flask-app:
+    image: flask-app:multi
+    container_name: flask-app-compose
+    ports:
+      - "80:80"
+    restart: unless-stopped
