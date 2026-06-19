@@ -1,10 +1,17 @@
 # 🚀 Flask App CI/CD Pipeline using GitHub Actions, Docker, Trivy & EC2 Self-Hosted Runner
 
+![Python](https://img.shields.io/badge/Python-Flask-blue)
+![Docker](https://img.shields.io/badge/Docker-Containerization-blue)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-blue)
+![AWS](https://img.shields.io/badge/AWS-EC2-orange)
+![Trivy](https://img.shields.io/badge/Security-Trivy-green)
+![Linux](https://img.shields.io/badge/Linux-Ubuntu-orange)
+
 A complete end-to-end DevOps CI/CD project demonstrating automated Docker image building, security scanning, and deployment of a Flask application to an AWS EC2 Ubuntu server using GitHub Actions and a Self-Hosted Runner.
 
 ---
 
-## 📌 Project Overview
+# 📌 Project Overview
 
 This project implements a production-style CI/CD pipeline for a containerized Flask application.
 
@@ -71,7 +78,7 @@ Flask Application Live on EC2 Public IP
 # 📁 Project Structure
 
 ```text
-flask-app-gitactions
+flask-app-ecs
 │
 ├── app.py
 ├── run.py
@@ -172,7 +179,7 @@ Verify Container Status
 Deployment command:
 
 ```bash
-docker pull <dockerhub-user>/flask-app-gitactions:latest
+docker pull <dockerhub-user>/flask-app-actions:latest
 
 docker stop flask-app-gitactions || true
 docker rm flask-app-gitactions || true
@@ -203,7 +210,8 @@ DOCKER_PASSWORD
 * Ubuntu Server 24.04 LTS
 * Self-Hosted GitHub Runner
 * Docker Engine Installed
-* Security Group:
+
+### Security Group Rules
 
 | Port | Purpose           |
 | ---- | ----------------- |
@@ -216,76 +224,101 @@ DOCKER_PASSWORD
 
 ## Repository Setup
 
-* 01_project_files_verified.png
-* 02_dockerfile_verified.png
-* 03_workflows_folder_created.png
-* 04_docker_build_workflow_created.png
-* 05_docker_build_workflow_pushed.png
+### Project Files Verified
+
+![Project Files Verified](screenshots/01_project_files_verified.png)
+
+### Dockerfile Verified
+
+![Dockerfile Verified](screenshots/02_dockerfile_verified.png)
+
+### Docker Build Workflow Created
+
+![Docker Build Workflow](screenshots/04_docker_build_workflow_created.png)
+
+---
 
 ## Docker Build Pipeline
 
-* 06_workflow_run_started.png
-* 07_docker_build_success.png
+### Docker Build Success
+
+![Docker Build Success](screenshots/07_docker_build_success.png)
+
+---
 
 ## DockerHub Integration
 
-* 08_docker_user_and_password_secret_created.png
-* 09_dockerhub_push_workflow_created.png
-* 10_dockerhub_workflow_pushed.png
-* 11_dockerhub_workflow_started.png
-* 12_dockerhub_push_success.png
-* 13_dockerhub_image_uploaded.png
+### DockerHub Push Success
+
+![DockerHub Push Success](screenshots/12_dockerhub_push_success.png)
+
+### Docker Image Uploaded to DockerHub
+
+![DockerHub Image Uploaded](screenshots/13_dockerhub_image_uploaded.png)
+
+---
 
 ## Build Artifacts
 
-* 14_artifact_step_added.png
-* 15_artifact_workflow_pushed.png
-* 16_build_artifact_uploaded.png
-* 17_build_report_verified.png
+### Build Artifact Uploaded
+
+![Build Artifact Uploaded](screenshots/16_build_artifact_uploaded.png)
+
+### Build Report Verified
+
+![Build Report Verified](screenshots/17_build_report_verified.png)
+
+---
 
 ## Composite Actions
 
-* 18_composite_action_created.png
-* 19_workflow_using_composite_action.png
-* 20_composite_action_workflow_success.png
-* 21_composite_action_artifact_uploaded.png
+### Composite Action Created
+
+![Composite Action Created](screenshots/18_composite_action_created.png)
+
+### Workflow Using Composite Action
+
+![Workflow Using Composite Action](screenshots/19_workflow_using_composite_action.png)
+
+---
 
 ## Reusable Workflows
 
-* 22_reusable_workflow_created.png
-* 23_caller_workflow_created.png
-* 24_reusable_workflow_pushed.png
-* 25_caller_workflow_manual_trigger.png
-* 26_reusable_workflow_called_successfully.png
+### Reusable Workflow Called Successfully
+
+![Reusable Workflow Called Successfully](screenshots/26_reusable_workflow_called_successfully.png)
+
+---
 
 ## Trivy Security Scanning
 
-* 27_trivy_steps_added.png
-* 28_trivy_artifact_step_added.png
-* 29_trivy_workflow_pushed.png
-* 30_trivy_workflow_running.png
-* 31_trivy_report_artifact_uploaded.png
-* 32_trivy_report_verified.png
+### Trivy Report Verified
+
+![Trivy Report Verified](screenshots/32_trivy_report_verified.png)
+
+---
 
 ## EC2 Self-Hosted Runner
 
-* 33_ec2_instance_created.png
-* 34_ec2_ssh_connected.png
-* 35_docker_installed_permission_granted_on_ec2.png
-* 36_runner_files_downloaded.png
-* 37_github_runner_setup_page.png
-* 38_runner_configured.png
-* 39_runner_listening_for_jobs.png
-* 40_runner_online_in_github.png
+### GitHub Runner Online
+
+![GitHub Runner Online](screenshots/40_runner_online_in_github.png)
+
+---
 
 ## Deployment
 
-* 40_deploy_ec2_workflow_created.png
-* 41_deploy_workflow_pushed.png
-* 42_deploy_workflow_triggered.png
-* 43_deployment_job_success.png
-* 44_container_running_on_ec2.png
-* 45_flask_app_live_on_ec2.png
+### Deployment Job Success
+
+![Deployment Job Success](screenshots/43_deployment_job_success.png)
+
+### Container Running on EC2
+
+![Container Running on EC2](screenshots/44_container_running_on_ec2.png)
+
+### Flask Application Live on EC2
+
+![Flask Application Live on EC2](screenshots/45_flask_app_live_on_ec2.png)
 
 ---
 
@@ -295,9 +328,11 @@ DOCKER_PASSWORD
 
 ✅ Docker Containerization
 
-✅ DockerHub Image Registry
+✅ DockerHub Registry Integration
 
 ✅ GitHub Secrets Management
+
+✅ Build Artifacts
 
 ✅ Composite Actions
 
@@ -305,11 +340,9 @@ DOCKER_PASSWORD
 
 ✅ Trivy Security Scanning
 
-✅ Build Artifacts
-
 ✅ AWS EC2 Self-Hosted Runner
 
-✅ Automated Container Deployment
+✅ Automated Docker Deployment
 
 ✅ Zero Manual Deployment Process
 
@@ -336,3 +369,4 @@ Serve Flask Application Live
 ```
 
 This project demonstrates an end-to-end modern DevOps CI/CD implementation using GitHub Actions, Docker, Trivy, and AWS EC2 Self-Hosted Runners.
+
