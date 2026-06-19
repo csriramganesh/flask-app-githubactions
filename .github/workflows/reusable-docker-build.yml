@@ -15,7 +15,7 @@ on:
         required: true
 
 jobs:
-  docker-build:
+  reusable-docker-build:
     runs-on: ubuntu-latest
 
     steps:
