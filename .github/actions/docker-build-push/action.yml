@@ -14,21 +14,21 @@ inputs:
     description: docker image name
     required: true
 
-  runs:
-    using: composite
-    steps:
-      - name: build docker image
-        shell: bash 
-        run: |
-          docker build -t ${{inputs.docker_user}}/${{inputs.image_name}}:latest .
+runs:
+  using: composite
+  steps:
+    - name: build docker image
+      shell: bash 
+      run: |
+        docker build -t ${{inputs.docker_user}}/${{inputs.image_name}}:latest .
 
-      - name: Docker login
-        shell: bash
-        run: |
-          echo "${{inputs.docker_password}}" | docker login -u "${{inputs.docker_user}}" --password-stdin
+    - name: Docker login
+      shell: bash
+      run: |
+        echo "${{inputs.docker_password}}" | docker login -u "${{inputs.docker_user}}" --password-stdin
 
-      -name: docker push
-       shell: bash
-       run: docker push "${{inputs.docker_user}}"/"${{inputs.image_name}}":latest     
+    - name: docker push
+      shell: bash
+      run: docker push "${{inputs.docker_user}}"/"${{inputs.image_name}}":latest     
              
       
