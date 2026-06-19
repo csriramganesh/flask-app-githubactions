@@ -19,5 +19,14 @@ jobs:
 
       - name: build docker image 
         run: docker build -t $IMAGE_NAME .
+
+      - name: Dockerlogin
+        run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USER}}" --password-stdin
+      - name: dockerimagetag
+        run:  docker tag $IMAGE_NAME "${{secrets.DOCKER_USER}}"/$IMAGE_NAME :latest
+
+      - name : docker push
+        run: docker push "${{secrets.DOCKER_USER}}"/$IMAGE_NAME:latest   
+              
         
           
