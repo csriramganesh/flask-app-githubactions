@@ -17,17 +17,12 @@ jobs:
       - name: checkout-repository
         uses: actions/checkout@v4
 
-      - name: build docker image 
-        run: docker build -t $IMAGE_NAME .
-
-      - name: Dockerlogin
-        run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USER}}" --password-stdin
-      - name: dockerimagetag
-        run:  docker tag $IMAGE_NAME "${{secrets.DOCKER_USER}}"/$IMAGE_NAME:latest
-
-      - name : docker push
-        run: docker push "${{secrets.DOCKER_USER}}"/$IMAGE_NAME:latest
-
+      - name: Docker build and push and tag using composite action 
+        uses: ./.github/actions/docker-build-push
+        with:
+          docker_user: ${{secret.DOCKER_USER}}
+          docker_password: ${{secret.DOCKER_PASSWORD}}
+          image_name: $IMAGE_NAME
       - name: create build report
         run: |
           echo "Application: flask-app-gitactions" > build-report.txt
