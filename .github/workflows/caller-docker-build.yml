@@ -1,0 +1,13 @@
+name: Caller docker build
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  call-docker-build:
+    uses: ./.github/workflows/reusable-docker-build.yml
+    with:
+      image_name: flask-app-gitactions
+    secrets: 
+      docker_user: ${{secrets.DOCKER_USER}}
+      docker_password: ${{secrets.DOCKER_PASSWORD}}
