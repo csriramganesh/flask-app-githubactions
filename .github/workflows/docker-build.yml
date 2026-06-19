@@ -26,7 +26,19 @@ jobs:
         run:  docker tag $IMAGE_NAME "${{secrets.DOCKER_USER}}"/$IMAGE_NAME:latest
 
       - name : docker push
-        run: docker push "${{secrets.DOCKER_USER}}"/$IMAGE_NAME:latest   
+        run: docker push "${{secrets.DOCKER_USER}}"/$IMAGE_NAME:latest
+
+      - name: create build report
+        run: |
+          echo "Application: flask-app-gitactions" > build-report.txt
+          echo "Image: ${{secrets.DOCKER_USER}}/$IMAGE_NAME:latest" >> build-report.txt
+          echo "Build status : success" >> build-report.txt
+          echo "Build time: $(date)" >> build-report.txt
+      - name: upload build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Flask-build-report
+          path: build-report.txt       
               
         
           
