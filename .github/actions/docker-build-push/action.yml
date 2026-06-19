@@ -1,0 +1,34 @@
+name: Docker build and push
+
+description: builds docker image and pushes to docker hub
+
+inputs:
+  docker_user:
+    description: Dockerhub username
+    required: true
+  docker_password:
+    description: dockerhub password
+    required: true
+
+  image_name: 
+    description: docker image name
+    required: true
+
+  runs:
+    using: composite
+    steps:
+      - name: build docker image
+        shell: bash 
+        run: |
+          docker build -t ${{inputs.docker_user}}/${{inputs.image_name}}:latest .
+
+      - name: Docker login
+        shell: bash
+        run: |
+          echo "${{inputs.docker_password}}" | docker login -u "${{inputs.docker_user}}" --password-stdin
+
+      -name: docker push
+       shell: bash
+       run: docker push "${{inputs.docker_user}}"/"${{inputs.image_name}}":latest     
+             
+      
