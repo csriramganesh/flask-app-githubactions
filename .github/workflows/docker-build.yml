@@ -20,8 +20,8 @@ jobs:
       - name: Docker build and push and tag using composite action 
         uses: ./.github/actions/docker-build-push
         with:
-          docker_user: ${{secret.DOCKER_USER}}
-          docker_password: ${{secret.DOCKER_PASSWORD}}
+          docker_user: ${{secrets.DOCKER_USER}}
+          docker_password: ${{secrets.DOCKER_PASSWORD}}
           image_name: $IMAGE_NAME
       - name: create build report
         run: |
